@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forest Fire Demo - Easiest Version</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; background: light blue; }
+        input { margin: 5px; padding: 5px; width: 100px; }
+        button { padding: 10px 20px; margin: 10px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Forest Fire Monitoring - Student Demo</h1>
+
+    <label>Temperature (°C):</label>
+    <input type="number" id="temp"><br>
+
+    <label>Humidity (%):</label>
+    <input type="number" id="humidity"><br>
+
+    <label>Wind Speed (km/h):</label>
+    <input type="number" id="wind"><br>
+
+    <label>Wind Direction:</label>
+    <input type="text" id="direction"><br>
+
+    <button onclick="checkFire()">Check Fire Risk</button>
+
+    <div id="result"></div>
+
+    <script>
+        function checkFire() {
+            var temp = parseFloat(document.getElementById("temp").value);
+            var hum = parseFloat(document.getElementById("humidity").value);
+            var wind = parseFloat(document.getElementById("wind").value);
+            var dir = document.getElementById("direction").value;
+
+            var risk = "";
+            var drone = "";
+
+            // Conditional logic - simplest version
+            if(temp > 40 && hum < 20 && wind > 20){
+                risk = "EXTREME ";
+                drone = "Drone Activated | Fog Spray ON 🌫";
+            } else if(temp > 35 && hum < 30 && wind > 15){
+                risk = "HIGH ";
+                drone = "Drone Standby Mode ";
+            } else if(temp > 30 && hum < 50){
+                risk = "MEDIUM ";
+                drone = "Monitoring...";
+            } else {
+                risk = "LOW ";
+                drone = "Forest Safe";
+            }
+
+            document.getElementById("result").innerHTML =
+                " Fire Risk: " + risk + "<br>" +
+                drone + "<br>" +
+                "Fire may spread towards: " + dir;
+        }
+    </script>
+</body>
+</html>
